@@ -11,19 +11,21 @@ import br.uam.servicofacil.repositories.ServicoRepository;
 
 @Service
 public class ServicoService {
+	
 	@Autowired
-    private final ServicoRepository servicoRepository;
+    private ServicoRepository servicoRepository;
 
     public ServicoService(ServicoRepository servicoRepository) {
         this.servicoRepository = servicoRepository;
     }
 
-    public List<Servico> getAllServicos() {
+    public List<Servico> findAllServicos() {
         return servicoRepository.findAll();
     }
 
-    public Optional<Servico> getServicoById(Long id) {
-        return servicoRepository.findById(id);
+    public Servico findServicoById(Long id) {
+    	Optional<Servico> obj = servicoRepository.findById(id);
+        return obj.get();
     }
 
     public Servico saveServico(Servico servico) {

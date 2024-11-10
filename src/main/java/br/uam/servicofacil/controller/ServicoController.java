@@ -1,8 +1,8 @@
 package br.uam.servicofacil.controller;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,22 +24,26 @@ public class ServicoController {
     }
 
     @GetMapping
-    public List<Servico> getAllServicos() {
-        return servicoService.getAllServicos();
+    public ResponseEntity<List<Servico>> getAllServicos() {
+    	List<Servico> list = servicoService.findAllServicos();
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/{id}")
-    public Optional<Servico> getServicoById(@PathVariable Long id) {
-        return servicoService.getServicoById(id);
+    public ResponseEntity<Servico> getServicoById(@PathVariable Long id) {
+    	Servico obj = servicoService.findServicoById(id);
+    	return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
-    public Servico saveServico(@RequestBody Servico servico) {
-        return servicoService.saveServico(servico);
+    public ResponseEntity<Servico> saveServico(@RequestBody Servico servico) {
+    	Servico servico1 = servicoService.saveServico(servico);
+        return ResponseEntity.ok().body(servico1);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteServico(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteServico(@PathVariable Long id) {
         servicoService.deleteServico(id);
+        return ResponseEntity.noContent().build();
     }
 }

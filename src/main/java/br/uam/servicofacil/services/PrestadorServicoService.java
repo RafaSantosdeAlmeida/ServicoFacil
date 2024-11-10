@@ -11,19 +11,21 @@ import br.uam.servicofacil.repositories.PrestadorServicoRepository;
 
 @Service
 public class PrestadorServicoService {
+	
 	@Autowired
-	private final PrestadorServicoRepository repository;
+	private PrestadorServicoRepository repository;
 
 	public PrestadorServicoService(PrestadorServicoRepository repository) {
         this.repository = repository;
     }
 
-    public List<PrestadorServico> getAllPrestadores() {
+    public List<PrestadorServico> findAllPrestadores() {
         return repository.findAll();
     }
 
-    public Optional<PrestadorServico> getPrestadorById(Long id) {
-        return repository.findById(id);
+    public PrestadorServico findPrestadorById(Long id) {
+    	Optional<PrestadorServico> obj = repository.findById(id);
+        return obj.get();
     }
 
     public PrestadorServico savePrestador(PrestadorServico prestador) {

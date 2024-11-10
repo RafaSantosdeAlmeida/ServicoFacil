@@ -11,19 +11,16 @@ import br.uam.servicofacil.repositories.ClienteRepository;
 
 @Service
 public class ClienteService {
+	
 	@Autowired
-    private final ClienteRepository clienteRepository;
-
-    public ClienteService(ClienteRepository clienteRepository) {
-        this.clienteRepository = clienteRepository;
-    }
+    private ClienteRepository clienteRepository;
 
     public List<Cliente> findAllClientes() {
         return clienteRepository.findAll();
     }
 
     public Cliente findClienteById(Long id) {
-    	Optional<Cliente> obj = clienteRepository.findById(id)
+    	Optional<Cliente> obj = clienteRepository.findById(id);
         return obj.get();
     }
 

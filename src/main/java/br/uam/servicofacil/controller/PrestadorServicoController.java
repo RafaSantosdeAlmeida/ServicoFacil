@@ -3,6 +3,7 @@ package br.uam.servicofacil.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,22 +25,26 @@ public class PrestadorServicoController {
     }
 
     @GetMapping
-    public List<PrestadorServico> getAllPrestadores() {
-        return service.getAllPrestadores();
+    public ResponseEntity<List<PrestadorServico>> getAllPrestadores() {
+    	List<PrestadorServico> list = service.findAllPrestadores();
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/{id}")
-    public Optional<PrestadorServico> getPrestadorById(@PathVariable Long id) {
-        return service.getPrestadorById(id);
+    public ResponseEntity<PrestadorServico> getPrestadorById(@PathVariable Long id) {
+    	PrestadorServico obj = service.findPrestadorById(id);
+        return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
-    public PrestadorServico savePrestador(@RequestBody PrestadorServico prestador) {
-        return service.savePrestador(prestador);
+    public ResponseEntity<PrestadorServico> savePrestador(@RequestBody PrestadorServico prestador) {
+    	prestador = service.savePrestador(prestador);
+    	return ResponseEntity.ok().body(prestador);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePrestador(@PathVariable Long id) {
-        service.deletePrestador(id);
+    public ResponseEntity<Void> deletePrestador(@PathVariable Long id) {
+    	service.deletePrestador(id);
+        return ResponseEntity.noContent().build();
     }
 }

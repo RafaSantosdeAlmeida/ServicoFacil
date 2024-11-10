@@ -1,8 +1,9 @@
 package br.uam.servicofacil.controller;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,29 +18,30 @@ import br.uam.servicofacil.services.ClienteService;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-    private final ClienteService clienteService;
-
-    public ClienteController(ClienteService clienteService) {
-        this.clienteService = clienteService;
-    }
+	@Autowired
+    private ClienteService clienteService;
 
     @GetMapping
-    public List<Cliente> getAllClientes() {
-        return clienteService.getAllClientes();
+    public ResponseEntity<List<Cliente>> finfAllClientes() {
+    	List<Cliente> list = clienteService.findAllClientes();
+        return ResponseEntity.ok().body(list);
     }
 
     @GetMapping("/{id}")
-    public Optional<Cliente> getClienteById(@PathVariable Long id) {
-        return clienteService.getClienteById(id);
+    public ResponseEntity<Cliente> getClienteById(@PathVariable Long id) {
+    	Cliente obj = clienteService.findClienteById(id);
+        return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
-    public Cliente saveCliente(@RequestBody Cliente cliente) {
-        return clienteService.saveCliente(cliente);
+    public ResponseEntity<Cliente> saveCliente(@RequestBody Cliente cliente) {
+    	cliente = clienteService.saveCliente(cliente);
+        return ResponseEntity.ok().body(cliente);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCliente(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCliente(@PathVariable Long id) {
         clienteService.deleteCliente(id);
+        return ResponseEntity.noContent().build();
     }
 }
