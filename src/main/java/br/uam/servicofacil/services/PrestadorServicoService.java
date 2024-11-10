@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.uam.servicofacil.entities.Cliente;
 import br.uam.servicofacil.entities.PrestadorServico;
 import br.uam.servicofacil.repositories.PrestadorServicoRepository;
 
@@ -35,4 +36,18 @@ public class PrestadorServicoService {
     public void deletePrestador(Long id) {
         repository.deleteById(id);
     }
+    
+    public PrestadorServico updatePrestadorServico(Long id, PrestadorServico obj) {
+    	PrestadorServico entity = repository.getReferenceById(id);
+    	updateData(entity, obj);
+    	return repository.save(entity);
+    }
+    
+    private void updateData(PrestadorServico entity, PrestadorServico obj) {
+    	entity.setId(obj.getId());
+    	entity.setEmail(obj.getEmail());
+    	entity.setEspecialidade(obj.getEspecialidade());
+    	entity.setNome(obj.getNome());
+    }
+    
 }

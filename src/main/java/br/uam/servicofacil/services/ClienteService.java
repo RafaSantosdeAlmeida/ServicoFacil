@@ -31,4 +31,17 @@ public class ClienteService {
     public void deleteCliente(Long id) {
         clienteRepository.deleteById(id);
     }
+    
+    public Cliente updateCliente(Long id, Cliente obj) {
+    	Cliente entity = clienteRepository.getReferenceById(id);
+    	updateData(entity, obj);
+    	return clienteRepository.save(entity);
+    }
+    
+    private void updateData(Cliente entity, Cliente obj) {
+    	entity.setId(obj.getId());
+    	entity.setEmail(obj.getEmail());
+    	entity.setNome(obj.getNome());
+    }
+    
 }

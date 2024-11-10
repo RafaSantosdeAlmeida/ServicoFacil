@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.uam.servicofacil.entities.Cliente;
 import br.uam.servicofacil.entities.Servico;
 import br.uam.servicofacil.services.ServicoService;
 
@@ -46,4 +48,11 @@ public class ServicoController {
         servicoService.deleteServico(id);
         return ResponseEntity.noContent().build();
     }
+    
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Servico> update(@PathVariable Long id, @RequestBody Servico obj){
+    	obj = servicoService.updateServico(id, obj);
+    	return ResponseEntity.ok().body(obj);
+    }
+    
 }

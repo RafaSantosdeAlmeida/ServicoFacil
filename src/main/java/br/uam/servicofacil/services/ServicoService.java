@@ -35,4 +35,19 @@ public class ServicoService {
     public void deleteServico(Long id) {
         servicoRepository.deleteById(id);
     }
+
+    public Servico updateServico(Long id, Servico obj) {
+    	Servico entity = servicoRepository.getReferenceById(id);
+    	updateData(entity, obj);
+    	return servicoRepository.save(entity);
+    }
+    
+    private void updateData(Servico entity, Servico obj) {
+    	entity.setId(obj.getId());
+    	entity.setData(obj.getData());
+    	entity.setDescricao(obj.getDescricao());
+    	entity.setCliente(obj.getCliente());
+    	entity.setPrestador(obj.getPrestador());
+    }
+    
 }
