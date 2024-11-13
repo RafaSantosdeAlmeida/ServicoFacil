@@ -39,9 +39,23 @@ public class ClienteService {
     }
     
     private void updateData(Cliente entity, Cliente obj) {
-    	entity.setId(obj.getId());
+    	entity.setBairro(obj.getBairro());
+    	entity.setCep(obj.getCep());
+    	entity.setCidade(obj.getCidade());
+    	entity.setComplemento(obj.getComplemento());
+    	entity.setCpf(obj.getComplemento());
+    	entity.setDataNascimento(obj.getDataNascimento());
+    	entity.setDdd(obj.getDdd());
     	entity.setEmail(obj.getEmail());
+    	entity.setEndereco(obj.getEndereco());
+    	entity.setEstado(obj.getEstado());
+    	entity.setGenero(obj.getGenero());
+    	entity.setId(obj.getId());
     	entity.setNome(obj.getNome());
+    	entity.setNumero(obj.getNumero());
+    	entity.setRg(obj.getRg());
+    	entity.setScore(obj.getScore());
+    	entity.setTelefone(obj.getTelefone());
     }
     
 }

@@ -43,11 +43,26 @@ public class ServicoService {
     }
     
     private void updateData(Servico entity, Servico obj) {
-    	entity.setId(obj.getId());
+    	entity.setAvaliacao(obj.getAvaliacao());
+    	entity.setCep(obj.getCep());
+    	entity.setCidade(obj.getCidade());
+    	entity.setCliente(obj.getCliente());
+    	entity.setComentario(obj.getComentario());
+    	entity.setComplemento(obj.getComplemento());
     	entity.setData(obj.getData());
     	entity.setDescricao(obj.getDescricao());
-    	entity.setCliente(obj.getCliente());
+    	entity.setEndereco(obj.getEndereco());
+    	entity.setEstado(obj.getEstado());
+    	entity.setGorjeta(obj.getGorjeta());
+    	entity.setHoraFim(obj.getHoraFim());
+    	entity.setHoraInicio(obj.getHoraInicio());
+    	entity.setId(obj.getId());
+    	entity.setNumero(obj.getNumero());
     	entity.setPrestador(obj.getPrestador());
+    	entity.setTaxaApp(obj.getTaxaApp());
+    	entity.setTempoDuracao(obj.getTempoDuracao());
+    	entity.setTipoServico(obj.getTipoServico());
+    	entity.setValorServico(obj.getValorServico());
     }
     
 }
